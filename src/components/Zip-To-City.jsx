@@ -3,36 +3,58 @@ import axios from "axios";
 
 const ZipToCity = (props) => {
   const [city, setCity] = useState({});
-  const [zipCode, setZipCode] = useState("");
-  const [error, setError] = useState("");
-  const zip = props.zip;
+//   const [zipCode, setZipCode] = useState();
+//   const [error, setError] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
-  // do u ppl like pokemon bwahwa? yea
-  useEffect(() => {
-    async function fetchCity() {
-      try {
-        const { data } = await axios.get(
-          `https://zip-api.eu/api/v1/info/US-${zip}`
-        );
-        setCity(data);
-        // setZipCode(list.data.results);
-        // setError(list.data.results);
-        console.log(data);
-      } catch (error) {
-        console.error(error);
-      }
+// Input box approach onChange zip code
+//   useEffect(() => {
+//     async function fetchCity() {
+//       try {
+//         const { data } = await axios.get(
+//           `https://zip-api.eu/api/v1/info/US-${props.zip}`
+//         );
+//         setCity(data);
+//         // setZipCode(list.data.results);
+//         // setError(list.data.results);
+//         console.log(data);
+//       } catch (error) {
+//         console.error(error);
+//       }
+//     }
+//     fetchCity();
+//   }, [props.zip]);
+
+// search button approach onClick zip code
+  async function fetchCity() {
+    try {
+      const { data } = await axios.get(
+        `https://zip-api.eu/api/v1/info/US-${inputValue}`
+      );
+      setCity(data);
+      // setZipCode(list.data.results);
+      // setError(list.data.results);
+      console.log(data);
+    } catch (error) {
+      console.error(error);
     }
-    fetchCity();
-  }, []);
+  }
 
+  const search = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  console.log(props.zip);
   return (
     <div id="container">
+      <input type="text" onChange={search} id="input"/>
+      <button onClick={fetchCity} id="searchButton">
+        Search
+      </button>
       <h1 className="header">{props.header}</h1>
-      Enter Zip Code
-      <input type="text" pattern="[0-9]"/> 
+
       <p>{city.country_code}</p>
       <p>{city.place_name}</p>
-      
     </div>
   );
 };
