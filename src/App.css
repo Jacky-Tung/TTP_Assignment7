@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+#container {
+  border: solid rgb(133, 109, 109);
+  border-width: 100px;
+  padding: 50px;
+}
+.header {
+  text-align: center;
+  padding-bottom: 20px;
+}
