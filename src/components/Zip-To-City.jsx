@@ -47,14 +47,34 @@ const ZipToCity = (props) => {
   console.log(props.zip);
   return (
     <div id="container">
+  
+      <h1 className="header">{props.header}</h1>
+
+    <section className="description">
+      <p>Welcome to ZipFinder, 
+        your one-stop destination for quick and accurate zip code searches! 
+        Whether you're sending a package, planning a road trip, or simply curious 
+        about the zip code of a particular location, our user-friendly website is 
+        here to assist you.
+      </p>
+      <p>
+      At ZipFinder, we understand the importance of finding accurate zip codes 
+      efficiently. Our comprehensive database is regularly updated to ensure you 
+      have access to the most current and reliable information. With a simple and 
+      intuitive interface, you can quickly search for zip codes within the United
+       States, saving you time and eliminating the frustration of incorrect or 
+       outdated data.
+      </p>
+      </section>
       <input type="text" onChange={search} id="input"/>
       <button onClick={fetchCity} id="searchButton">
         Search
       </button>
-      <h1 className="header">{props.header}</h1>
-
-      <p>{city.country_code}</p>
-      <p>{city.place_name}</p>
+      
+        <div className="country">
+          <p>{city.country_code}</p>
+          <p>{city.place_name}</p>
+        </div>
     </div>
   );
 };
